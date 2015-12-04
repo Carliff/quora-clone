@@ -1,5 +1,11 @@
 <h1>Edit Profile</h1>
 
+<% if logged_in? %>
+<h2>You are logged in as <%= @user.name %><br></h2>
+<%else%>
+<h2>You are currently not logged in</h2><br>
+<%end%>
+
 <form action="/users/<%= @user.id %>" method="post">
 	<input type="hidden" name="_method" value="patch">
 	<label>Name: </label>

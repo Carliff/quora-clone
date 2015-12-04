@@ -1,5 +1,13 @@
 <h1>User Profile</h1>
 
+<% if logged_in? %>
+<h2>You are logged in as <%= @user.name %><br></h2>
+<%else%>
+<h2>You are currently not logged in</h2><br>
+<%end%>
+
+
+
 Name: <%= @user.name %><br>
 Email: <%= @user.email %><br>
 
@@ -9,7 +17,7 @@ Email: <%= @user.email %><br>
 
 <form action="/users/<%= @user.id %>" method="post">
 	<input type="hidden" name="_method" value="delete">
-	<input type="submit" value="Delete">
+	<input type="submit" value="Delete profile">
 </form>
 
 <a href="/users/logout"><button>Logout</button></a>
