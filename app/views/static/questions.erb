@@ -1,4 +1,4 @@
-<h1>Carliff's Quora HOME Page</h1>
+<h1>All Questions</h1>
 
 <% if logged_in? %>
 <h2>You are logged in as <%= @user.name %><br></h2>
@@ -8,10 +8,9 @@
 
 
 <% if logged_in? %>
-<a href="/users/<%= @user.id %>/edit"><button>Edit My Profile</button></a><br>
-<a href="/questions/new"><button>Ask a new question</button></a><br>
-<a href="/users/questions"><button>See All My Questions</button></a><br>
+<a href="/users/<%= @user.id %>/edit"><button>Edit Profile</button></a><br>
 <a href="/users/logout"><button>Logout</button></a><br>
+<a href="/"><button>HOME</button></a>
 <%else%>
 <p>For existing users Login</p>
 
@@ -21,5 +20,3 @@
 
 <a href="/users/new"><button>Sign Up</button></a>
 <%end%>
-
-

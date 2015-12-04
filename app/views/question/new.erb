@@ -1,0 +1,17 @@
+<h1>Ask New Question</h1>
+
+<% if logged_in? %>
+<h2>You are logged in as <%= @user.name %><br></h2>
+<%else%>
+<h2>You are currently not logged in</h2><br>
+<%end%>
+
+<%=@warning if @warning%>
+
+<form action="/questions" method="POST">
+	<label>Question: </label>
+	<input type="text" name="question"><br>
+	<input type="submit" value="Ask question">
+</form>
+
+<a href="/questions"><button>See all questions</button></a>

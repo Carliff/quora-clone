@@ -44,6 +44,15 @@ post "/users" do
 	end
 end
 
+# View all user questions
+
+get "/users/questions" do
+	@user = current_user
+	@questions = Question.where(user_id: session[:user_id])
+	erb :'user/questions'
+end
+
+
 # View user profile
 
 get '/users/:id' do
@@ -79,6 +88,7 @@ end
 get '/users' do
 	erb :'user/index'
 end
+
 
 
 
