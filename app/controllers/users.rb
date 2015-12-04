@@ -34,10 +34,11 @@ end
 
 post "/users" do
 	# byebug
-	user = User.new(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+	@user = User.new(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
 
-	if user.save
-		redirect "/users/#{user.id}"
+	if @user.save
+		session[:user_id] = @user.id
+		redirect "/users/#{@user.id}"
 	else
 		@warning = "Sign up failed, invalid or incomplete info, please retry"
 		erb :'/user/new'
