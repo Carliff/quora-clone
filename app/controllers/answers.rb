@@ -1,7 +1,13 @@
 # Display new answer form
-get "/answers/new" do
+# get "/answers/new" do
+# 	@user = current_user
+# 	erb :"answer/new"
+# end
+
+get "/questions/:question_id/answers/new" do
 	@user = current_user
-	erb :"answer/new"
+	@question = Question.find(params[:question_id])
+	erb :'answer/new'
 end
 
 # Create new Answer
@@ -9,13 +15,7 @@ end
 post "/answers" do
 	# byebug
 	@user = current_user
-	@answer = Answer.new(body: params[:body], question_id: session[:question_id], user_id: session[:user_id])
-
-	if @answer.save
-		# erb :"/user/questions"
-		redirect to "/answers/#{@answer.id}"
-	else
-		@warning = "Action failed, invalid or incomplete info, please retry"
-		erb :"answer/new"
-	end
+	@answer = Answer.create(body: params[:body], question_id: session[:question_id], user_id: session[:user_id])
+		erb :'question/show'
+		#redirect to "/question/#{question.id}"
 end

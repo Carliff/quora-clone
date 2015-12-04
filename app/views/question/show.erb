@@ -10,7 +10,9 @@
 
 Question: <%= @question.question %><br><br>
 
-<a href="answers/new"><button>Give an ANSWER</button></a><br><br>
+Answers: <%= @question.answers %><br><br>
+
+<a href="/questions/<%=@question.id %>/answers/new"><button>Give an ANSWER</button></a><br><br>
 
 
 <a href="/users/questions"><button>See All My Questions</button></a>
