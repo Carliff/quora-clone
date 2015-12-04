@@ -1,9 +1,21 @@
 # User login
 
+# post '/users/login' do
+# 	user = User.find_by(email: params[:email], password: params[:password])
+# 	session[:user_id] = user.id
+# 	redirect "/users/#{user.id}"
+# end
+
 post '/users/login' do
-	user = User.find_by(email: params[:email], password: params[:password])
-	session[:user_id] = user.id
-	redirect "/users/#{user.id}"
+	User.connection
+	user = User.authenticate(params[:email], params[:password])
+	if user 
+		session[:user_id] = user.id
+		redirect "/users/#{user.id}"
+	else
+		@warning = "Login failed, invalid details, please retry"
+		erb :'user/index'
+	end
 end
 
 # User logout
@@ -22,9 +34,14 @@ end
 
 post "/users" do
 	# byebug
-	user = User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+	user = User.new(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
 
-	redirect "/users/#{user.id}"
+	if user.save
+		redirect "/users/#{user.id}"
+	else
+		@warning = "Sign up failed, invalid or incomplete info, please retry"
+		erb :'/user/new'
+	end
 end
 
 # View user profile
