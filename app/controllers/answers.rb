@@ -12,10 +12,9 @@ end
 
 # Create new Answer
 
-post "/answers" do
-	# byebug
-	@user = current_user
-	@answer = Answer.create(body: params[:body], question_id: session[:question_id], user_id: session[:user_id])
-		erb :'question/show'
-		#redirect to "/question/#{question.id}"
+post "/questions/:question_id/answers" do
+	question = Question.find(params[:question_id])
+	answer = question.answers.create(body: params[:body], user_id: current_user.id)
+		# erb :'question/show'
+		redirect to "/questions/#{question.id}"
 end

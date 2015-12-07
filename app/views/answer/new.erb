@@ -8,9 +8,9 @@
 
 <%=@warning if @warning%>
 
-<form action="/answers" method="POST">
+<form action="/questions/<%=@question.id %>/answers" method="POST">
 	<label>Answer: </label>
-	<input type="text" name="answer"><br>
+	<input type="text" name="body"><br>
 	<input type="submit" value="Answer">
 </form>
 

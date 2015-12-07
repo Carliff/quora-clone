@@ -10,7 +10,7 @@
 
 <% @question.each_with_index do |q, index| %>
   <a href="/questions/<%= q.id %>">
-    <p><%= "#{index + 1})  #{q.question}" %></p>
+    <p><%= "#{index + 1})  #{q.question} (#{q.answers.count} answers)" %></p>
   </a>
 <% end %>
 

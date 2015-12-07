@@ -7,10 +7,16 @@
 <%end%>
 
 
+<h2>Question: <%= @question.question %> </h2>
+Question by: <%= @question.user.name%> <br><br>
 
-Question: <%= @question.question %><br><br>
+Answers: <br><br>
 
-Answers: <%= @question.answers %><br><br>
+<% @answers.each_with_index do |x, index| %>
+<%= "#{index + 1})  '#{x.body}' answered by user: #{x.user.name}"%>
+		<%end%>
+
+<br><br>
 
 <a href="/questions/<%=@question.id %>/answers/new"><button>Give an ANSWER</button></a><br><br>
 

@@ -25,6 +25,7 @@ end
 get "/questions/:id" do
 	@user = current_user
 	@question = Question.find(params[:id])
+	@answers = @question.answers
 	erb :'question/show'
 end
 

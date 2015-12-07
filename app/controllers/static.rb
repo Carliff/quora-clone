@@ -3,6 +3,7 @@
 get '/' do
 	@user = current_user
 	@question = Question.all
+	@answers = Answer.all
   erb :"static/index"
 end
 
