@@ -32,7 +32,8 @@ end
 # Delete question
 
 delete '/questions/:id' do
+	@user = current_user
 	question = Question.find(params[:id])
 	question.destroy
-	erb :"/static/questions"
+	erb :'user/questions'
 end

@@ -1,6 +1,5 @@
-class Question < ActiveRecord::Base
+class Qvote < ActiveRecord::Base
 	# This is Sinatra! Remember to create a migration!
 	belongs_to :user
-	has_many :answers
-	has_many :qvotes
+	belongs_to :question
 end
