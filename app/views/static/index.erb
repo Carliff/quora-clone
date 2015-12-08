@@ -8,14 +8,24 @@
 
 <h2>Latest Questions!</h2>
 
+<% if logged_in? %>
+
 <% @question.each_with_index do |q, index| %>
   <a href="/questions/<%= q.id %>">
-    <p><%= "#{index + 1})  #{q.question} (#{q.answers.count} answers)" %></p>
+    <p><%= "#{index + 1})  #{q.question} (#{q.answers.count} answers. Total Votes: #{q.votes.count})" %></p>
+
+    <form action="/questions/<%= q.id %>" method="post">
+		<input type="hidden" name="vote" value="true">
+		<input type="submit" value="Upvote">
+		</form>
+
+		<form action="/questions/<%= q.id %>" method="post">
+		<input type="hidden" name="vote" value="false">
+		<input type="submit" value="Downvote">
+		</form>
   </a>
 <% end %>
 
-
-<% if logged_in? %>
 
 		<a href="/questions/new"><button>Ask a new question</button></a><br>
 		<a href="/users/<%= @user.id %>"><button>View My Profile</button></a><br>
@@ -24,6 +34,12 @@
 		<a href="/"><button>HOME</button></a>
 
 	<%else%>
+
+	<% @question.each_with_index do |q, index| %>
+  <a href="/questions/<%= q.id %>">
+    <p><%= "#{index + 1})  #{q.question} (#{q.answers.count} answers. Total Votes: #{q.votes.count})" %></p>
+  </a>
+	<% end %>
 
 		<p>For existing users Login</p>
 		<a href="/users"><button>Login</button></a>

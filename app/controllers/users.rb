@@ -61,14 +61,14 @@ get '/users/:id' do
 	erb :'user/show'
 end
 
-# Display user edit form
+# Display Edit User form
 
 get '/users/:id/edit' do
 	@user = User.find(params[:id])
 	erb :'user/edit'
 end 
 
-# Update user
+# Edit user
 
 patch '/users/:id' do
 	user = User.find(params[:id])

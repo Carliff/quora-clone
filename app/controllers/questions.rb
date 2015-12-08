@@ -37,3 +37,21 @@ delete '/questions/:id' do
 	question.destroy
 	erb :'user/questions'
 end
+
+
+#Vote Up / Down
+
+post '/questions/:id' do
+	@user = current_user
+	@question = Question.find(params[:id])
+	@answers = @question.answers
+	vote = Vote.create(voteable: @question, user: current_user, vote: params[:vote])
+	# if vote.valid?
+ #    flash[:notice] = "Your vote was counted."
+ #  else
+ #    flash[:error] = "You can only vote once."
+ #  end
+	# erb :'question/show'
+	redirect "/"
+end
+
